@@ -21,7 +21,7 @@ remove :; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gi
 install : 
 	forge install OpenZeppelin/openzeppelin-contracts --no-commit
 	forge install Cyfrin/foundry-devops --no-commit
-	forge install foundry-rs/forge-std@v1.5.3 --no-commit
+	forge install foundry-rs/forge-std --no-commit
 
 # Update Dependencies
 update:; forge update
