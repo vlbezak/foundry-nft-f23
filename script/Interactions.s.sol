@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.20;
 
-import {Script} from "forge-std/Script.sol";
+import {Script, console} from "forge-std/Script.sol";
 import {BasicNft} from "../src/BasicNft.sol";
 import {DevOpsTools} from "lib/foundry-devops/src/DevOpsTools.sol";
 
@@ -12,11 +12,13 @@ contract MintBasicNft is Script {
 
     function run() external returns (BasicNft basicNft){
         address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("BasicNft", block.chainid);
+        console.log("Recent contract: {}", mostRecentlyDeployed);
         mintNftOnContract(mostRecentlyDeployed);
 
     }
 
     function mintNftOnContract(address contractAddress) public {
+        console.log("Start minting: on {}", contractAddress);
         vm.startBroadcast();
         BasicNft(contractAddress).mintNft(PUG_URI);
         vm.stopBroadcast();
